@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TComprobante extends Model
 {
-    use HasFactory;
+    protected $table = "TComprobante";
+    protected $fillable = [
+        "nombre",
+        "estado"
+    ];
 }

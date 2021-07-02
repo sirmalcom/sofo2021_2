@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class MCliente extends Model
 {
-    use HasFactory;
+    protected $table = "MCliente";
+    protected $fillable = [
+        "nombre",
+        "idTDocumento",
+        "numeroDocumento",
+        "direccion",
+        "estado"
+    ];
 }

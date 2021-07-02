@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class MProducto extends Model
 {
-    use HasFactory;
+    protected $table = "MProducto";
+    protected $fillable = [
+        "idTCategoria",
+        "nombre",
+        "descripcion",
+        "stock",
+        "stockMinimo",
+        "ultimoCostoCompra",
+        "ultimoCostoVenta",
+        "ganancia",
+        "estado"
+    ];
 }

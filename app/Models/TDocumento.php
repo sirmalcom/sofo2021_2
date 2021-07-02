@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class TDocumento extends Model
 {
-    use HasFactory;
+    protected $table = "TDocumento";
+    protected $fillable = [
+        "nombre",
+        "estado"
+    ];
+
 }

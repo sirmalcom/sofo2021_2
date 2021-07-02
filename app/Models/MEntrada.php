@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class MEntrada extends Model
 {
-    use HasFactory;
+    protected $table = "MEntrada";
+    protected $fillable = [
+        "fechaEntrada",
+        "numeroComprobante",
+        "costoTotal",
+        "idTComprobante",
+        "idMUsuario",
+        "idMProveedor"
+    ];
 }

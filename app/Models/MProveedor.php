@@ -7,5 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class MProveedor extends Model
 {
-    use HasFactory;
+    protected $table = "MProveedor";
+    protected $fillable=[
+        "nombre",
+        "idTDocumento",
+        "numeroDocumento",
+        "representante",
+        "direccion",
+        "telefono",
+        "estado"
+    ];
 }

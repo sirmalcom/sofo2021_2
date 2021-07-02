@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TCargo extends Model
 {
-    use HasFactory;
+    protected $table = "TCargo";
+    protected $fillable = [
+        "cargo",
+        "estado"
+    ];
 }

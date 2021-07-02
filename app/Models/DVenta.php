@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DVenta extends Model
 {
-    use HasFactory;
+    protected $table = "DVenta";
+    protected $fillable = [
+        "idMVenta",
+        "idMProducto",
+        "cantidad",
+        "descuento",
+        "importe"
+    ];
 }

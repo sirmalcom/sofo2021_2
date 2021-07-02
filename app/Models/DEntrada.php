@@ -7,5 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class DEntrada extends Model
 {
-    use HasFactory;
+    protected $table = 'DEntrada';
+    protected $fillable = [
+        "idMEntrada",
+        "idMProducto",
+        "fechaVencimiento",
+        "precioCompra",
+        "precioVenta",
+        "cantidad",
+        "descuento",
+        "importe"
+    ];
+
+
 }

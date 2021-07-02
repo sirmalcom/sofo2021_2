@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TCategoria extends Model
 {
-    use HasFactory;
+    protected $table = "TCategoria";
+    protected $fillable = [
+        "nombre",
+        "estado"
+    ];
 }

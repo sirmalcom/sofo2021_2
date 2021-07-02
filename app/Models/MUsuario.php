@@ -7,5 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class MUsuario extends Model
 {
-    use HasFactory;
+    protected $table = "MUsuario";
+    protected $fillable = [
+        "usuario",
+        "clave",
+        "idTCargo",
+        "estado"
+    ];
 }

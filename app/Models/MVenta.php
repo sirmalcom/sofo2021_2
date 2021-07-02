@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class MVenta extends Model
 {
-    use HasFactory;
+    protected $table = "MVenta";
+    protected $fillable = [
+        "fechaVenta",
+        "numeroSerie",
+        "subtotal",
+        "total",
+        "ganancia",
+        "estado",
+        "idTComprobante",
+        "idMCliente",
+        "idMUsuario"
+    ];
 }
