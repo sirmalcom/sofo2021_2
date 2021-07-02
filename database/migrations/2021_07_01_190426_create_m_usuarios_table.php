@@ -13,9 +13,13 @@ class CreateMUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('MUsuario', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('usuario',50)->unique();
+            $table->string('clave',50);
+            $table->unsignedBigInteger('idTCargo');
+            $table->boolean('estado');
+            $table->foreign('idTCargo')->references('id')->on('TCargo');    
         });
     }
 
@@ -26,6 +30,6 @@ class CreateMUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_usuarios');
+        Schema::dropIfExists('MUsuario');
     }
 }

@@ -13,9 +13,18 @@ class CreateDEntradasTable extends Migration
      */
     public function up()
     {
-        Schema::create('d_entradas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('DEntrada', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('idMEntrada');
+            $table->unsignedBigInteger('idMProducto');
+            $table->date('fechaVencimiento');
+            $table->decimal('precioCompra',8,2);
+            $table->decimal('precioVenta',8,2);
+            $table->integer('cantidad');
+            $table->decimal('descuento',8,2);
+            $table->decimal('importe',8,2);
+            $table->foreign('idMEntrada')->references('id')->on('MEntrada');
+            $table->foreign('idMProducto')->references('id')->on('MProducto');
         });
     }
 
@@ -26,6 +35,6 @@ class CreateDEntradasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_entradas');
+        Schema::dropIfExists('DEntrada');
     }
 }

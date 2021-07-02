@@ -13,9 +13,18 @@ class CreateMProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_productos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('MProducto', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('idTCategoria');
+            $table->string('nombre',150);
+            $table->string('descripcion',200);
+            $table->integer('stock');
+            $table->integer('stockMinimo');
+            $table->decimal('ultimoCostoCompra',8,2);
+            $table->decimal('ultimoCostoVenta',8,2);
+            $table->decimal('ganancia',8,2);
+            $table->boolean('estado');
+            $table->foreign('idTCategoria')->references('id')->on('TCategoria');
         });
     }
 
@@ -26,6 +35,6 @@ class CreateMProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_productos');
+        Schema::dropIfExists('MProducto');
     }
 }

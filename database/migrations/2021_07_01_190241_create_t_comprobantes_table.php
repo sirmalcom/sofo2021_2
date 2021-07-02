@@ -13,9 +13,10 @@ class CreateTComprobantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_comprobantes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('TComprobante', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',50);
+            $table->boolean('estado');            
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTComprobantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_comprobantes');
+        Schema::dropIfExists('TComprobante');
     }
 }

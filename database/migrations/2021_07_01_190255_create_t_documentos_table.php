@@ -13,9 +13,10 @@ class CreateTDocumentosTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_documentos', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('TDocumento', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',50);
+            $table->boolean('estado');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_documentos');
+        Schema::dropIfExists('TDocumento');
     }
 }

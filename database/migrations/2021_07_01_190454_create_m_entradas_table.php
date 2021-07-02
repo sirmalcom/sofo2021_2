@@ -13,9 +13,17 @@ class CreateMEntradasTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_entradas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('MEntrada', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamp('fechaEntrada');  
+            $table->string('numeroComprobante',100);
+            $table->decimal('costoTotal',8,2);
+            $table->unsignedBigInteger('idTComprobante');
+            $table->unsignedBigInteger('idMUsuario');
+            $table->unsignedBigInteger('idMProveedor');
+            $table->foreign('idMUsuario')->references('id')->on('MUsuario');
+            $table->foreign('idTComprobante')->references('id')->on('TComprobante');
+            $table->foreign('idMProveedor')->references('id')->on('MProveedor');
         });
     }
 
@@ -26,6 +34,6 @@ class CreateMEntradasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_entradas');
+        Schema::dropIfExists('MEntrada');
     }
 }

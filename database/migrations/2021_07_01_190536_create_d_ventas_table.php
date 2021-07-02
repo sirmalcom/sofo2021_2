@@ -13,9 +13,15 @@ class CreateDVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('d_ventas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('DVenta', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('idMVenta');
+            $table->unsignedBigInteger('idMProducto');
+            $table->integer('cantidad');
+            $table->decimal('descuento',8,2);
+            $table->decimal('importe',8,2);
+            $table->foreign('idMVenta')->references('id')->on('MVenta');
+            $table->foreign('idMProducto')->references('id')->on('MProducto');
         });
     }
 
@@ -26,6 +32,6 @@ class CreateDVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('d_ventas');
+        Schema::dropIfExists('DVenta');
     }
 }

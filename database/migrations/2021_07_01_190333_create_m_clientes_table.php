@@ -13,9 +13,14 @@ class CreateMClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_clientes', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('MCliente', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',100);
+            $table->unsignedBigInteger('idTDocumento');
+            $table->string('numeroDocumento',11);
+            $table->string('direccion',150);
+            $table->boolean('estado');
+            $table->foreign('idTDocumento')->references('id')->on('TDocumento');
         });
     }
 
@@ -26,6 +31,6 @@ class CreateMClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_clientes');
+        Schema::dropIfExists('MCliente');
     }
 }

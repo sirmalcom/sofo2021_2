@@ -13,9 +13,20 @@ class CreateMVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('m_ventas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('MVenta', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamp('fechaVenta');
+            $table->string('numeroSerie',50);
+            $table->decimal('subtotal',8,2);
+            $table->decimal('total',8,2);
+            $table->decimal('ganancia',8,2);
+            $table->boolean('estado');
+            $table->unsignedBigInteger('idTComprobante');
+            $table->unsignedBigInteger('idMCliente');
+            $table->unsignedBigInteger('idMUsuario');
+            $table->foreign('idMCliente')->references('id')->on('MCliente');
+            $table->foreign('idMUsuario')->references('id')->on('MUsuario');
+            $table->foreign('idTComprobante')->references('id')->on('TComprobante');
         });
     }
 
@@ -26,6 +37,6 @@ class CreateMVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('m_ventas');
+        Schema::dropIfExists('MVenta');
     }
 }

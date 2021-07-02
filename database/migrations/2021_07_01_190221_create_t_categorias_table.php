@@ -13,9 +13,10 @@ class CreateTCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_categorias', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('TCategoria', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre',50);
+            $table->boolean('estado');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateTCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_categorias');
+        Schema::dropIfExists('TCategoria');
     }
 }
