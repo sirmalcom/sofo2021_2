@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('register', 'UserController@register'); 
+Route::post('login', 'UserController@authenticate');
+
+Route::group(['middleware' => ['jwt.verify']], function() { 
+    /*AÑADE AQUI LAS RUTAS QUE QUIERAS PROTEGER CON JWT*/
+    Route::apiResource('tdocumento', 'TDocumentoController'); 
 });
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});*/
+
+

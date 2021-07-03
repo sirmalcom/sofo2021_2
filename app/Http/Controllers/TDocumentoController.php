@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TDocumento;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class TDocumentoController extends Controller
@@ -14,7 +15,15 @@ class TDocumentoController extends Controller
      */
     public function index()
     {
-        //
+        $tdocumento = TDocumento::where("estado",1)->get();
+        $json = array(
+            "meta"=>array(
+                "msg"=>"Ok"
+            ),
+            "status"=>true,
+            "objects"=>$tdocumento
+        ); 
+        return response()->json($json);
     }
 
     /**
@@ -35,7 +44,21 @@ class TDocumentoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Log::channel('stderr')->info('¡Peticion llego!');
+
+        $tdocumento = new TDocumento();
+        $tdocumento -> nombre = $request->input("nombre");
+        $tdocumento -> estado = 1;
+        $tdocumento->save();
+
+        $index = TDocumento::where("estado",1)->get();
+
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$index
+        ]);
     }
 
     /**
@@ -44,9 +67,17 @@ class TDocumentoController extends Controller
      * @param  \App\Models\TDocumento  $tDocumento
      * @return \Illuminate\Http\Response
      */
-    public function show(TDocumento $tDocumento)
+    public function show($id)
     {
-        //
+        $tdocumento = TDocumento::where("estado",1)->where("id",$id)->get();
+        $json = array(
+            "meta"=>array(
+                "msg"=>"Ok"
+            ),
+            "status"=>true,
+            "object"=>$tdocumento
+        );
+        return response()->json($json);
     }
 
     /**

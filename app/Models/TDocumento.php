@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TDocumento extends Model
 {
+    public $timestamps = false;
     protected $table = "TDocumento";
     protected $fillable = [
         "nombre",
