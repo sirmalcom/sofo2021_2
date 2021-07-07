@@ -50,7 +50,7 @@ class TDocumentoController extends Controller
         $tdocumento = new TDocumento();
         $tdocumento -> nombre = $request->input("nombre");
         $tdocumento -> estado = 1;
-        $tdocumento->save();
+        $tdocumento->save();    
 
         $index = TDocumento::where("estado",1)->get();
 
@@ -71,13 +71,13 @@ class TDocumentoController extends Controller
     {
         $tdocumento = TDocumento::where("estado",1)->where("id",$id)->get();
         $json = array(
-            "meta"=>array(
-                "msg"=>"Ok"
-            ),
+            "meta"=>array("msg"=>"Ok"),
             "status"=>true,
-            "object"=>$tdocumento
+            "object"=>$tdocumento   
         );
+
         return response()->json($json);
+        
     }
 
     /**
@@ -98,9 +98,18 @@ class TDocumentoController extends Controller
      * @param  \App\Models\TDocumento  $tDocumento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TDocumento $tDocumento)
+    public function update(Request $request,$id)
     {
         //
+        //
+        $tdocumento = TDocumento::where('id',$id);
+        $tdocumento->update($request->all());
+        $all = TDocumento::where('estado',1)->get();
+        return response()-> json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "object"=>$all
+        ]);
     }
 
     /**
@@ -109,8 +118,16 @@ class TDocumentoController extends Controller
      * @param  \App\Models\TDocumento  $tDocumento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TDocumento $tDocumento)
+    public function destroy(Request $request,$id)
     {
-        //
+        //Eliminado logico
+        $tdocumento = TDocumento::where('id',$id)->get();
+        $tdocumento->update($request->estado = 0);
+        $all = TDocumento::all();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$all
+        ]);
     }
 }
