@@ -18,7 +18,6 @@ class MProveedor extends Model
         "numeroDocumento",
         "representante",
         "direccion",
-        "telefono",
-        "estado"
+        "telefono"
     ];
 }

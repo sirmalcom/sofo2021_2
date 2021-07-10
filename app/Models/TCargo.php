@@ -13,7 +13,6 @@ class TCargo extends Model
     public $timestamps = false;
     protected $table = "TCargo";
     protected $fillable = [
-        "cargo",
-        "estado"
+        "nombre"
     ];
 }

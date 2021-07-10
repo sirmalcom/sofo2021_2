@@ -23,7 +23,6 @@ class CreateMProductosTable extends Migration
             $table->decimal('ultimoCostoCompra',8,2);
             $table->decimal('ultimoCostoVenta',8,2);
             $table->decimal('ganancia',8,2);
-            $table->boolean('estado');
             $table->foreign('idTCategoria')->references('id')->on('TCategoria');
             $table->softDeletes();
         });

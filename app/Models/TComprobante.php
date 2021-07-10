@@ -13,7 +13,6 @@ class TComprobante extends Model
     public $timestamps = false;
     protected $table = "TComprobante";
     protected $fillable = [
-        "nombre",
-        "estado"
+        "nombre"
     ];
 }

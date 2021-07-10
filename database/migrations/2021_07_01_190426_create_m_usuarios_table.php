@@ -18,7 +18,6 @@ class CreateMUsuariosTable extends Migration
             $table->string('usuario',50)->unique();
             $table->string('clave',50);
             $table->unsignedBigInteger('idTCargo');
-            $table->boolean('estado');
             $table->foreign('idTCargo')->references('id')->on('TCargo');    
             $table->softDeletes();
         });

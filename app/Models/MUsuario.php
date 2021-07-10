@@ -15,7 +15,6 @@ class MUsuario extends Model
     protected $fillable = [
         "usuario",
         "clave",
-        "idTCargo",
-        "estado"
+        "idTCargo"
     ];
 }

@@ -19,7 +19,6 @@ class CreateMClientesTable extends Migration
             $table->unsignedBigInteger('idTDocumento');
             $table->string('numeroDocumento',11);
             $table->string('direccion',150);
-            $table->boolean('estado');
             $table->foreign('idTDocumento')->references('id')->on('TDocumento');
             $table->softDeletes();
         });

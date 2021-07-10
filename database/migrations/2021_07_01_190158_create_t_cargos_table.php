@@ -15,8 +15,7 @@ class CreateTCargosTable extends Migration
     {
         Schema::create('TCargo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('cargo',50);
-            $table->boolean('estado');
+            $table->string('nombre',50);
             $table->softDeletes();
         });
     }

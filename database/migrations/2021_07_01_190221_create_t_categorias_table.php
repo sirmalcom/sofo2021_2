@@ -16,7 +16,6 @@ class CreateTCategoriasTable extends Migration
         Schema::create('TCategoria', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
-            $table->boolean('estado');
             $table->softDeletes();
         });
     }

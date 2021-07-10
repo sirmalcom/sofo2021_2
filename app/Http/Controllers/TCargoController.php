@@ -15,6 +15,12 @@ class TCargoController extends Controller
     public function index()
     {
         //
+        $tcargo = TCargo::all();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$tcargo
+        ]);
     }
 
     /**
@@ -36,6 +42,19 @@ class TCargoController extends Controller
     public function store(Request $request)
     {
         //
+        $tcargo = new TCargo();
+
+        $tcargo->nombre = $request->input('nombre');
+
+        $tcargo->save();
+
+        $objects = TCargo::all();
+
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>$objects
+        ]);
     }
 
     /**
@@ -44,9 +63,16 @@ class TCargoController extends Controller
      * @param  \App\Models\TCargo  $tCargo
      * @return \Illuminate\Http\Response
      */
-    public function show(TCargo $tCargo)
+    public function show($id)
     {
         //
+        $tcargo = TCargo::where('id',$id)->get();
+
+        return response()->json([
+            "meta"=>array('msg'=>'Ok'),
+            "status"=>true,
+            "object"=>$tcargo
+        ]);
     }
 
     /**
@@ -67,9 +93,20 @@ class TCargoController extends Controller
      * @param  \App\Models\TCargo  $tCargo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TCargo $tCargo)
+    public function update(Request $request, $id)
     {
         //
+        $tcargo = TCargo::where('id',$id);
+
+        $tcargo->update($request->all());
+
+        $data = TCargo::all();
+
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>$data
+        ]);
     }
 
     /**
@@ -78,8 +115,20 @@ class TCargoController extends Controller
      * @param  \App\Models\TCargo  $tCargo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TCargo $tCargo)
+    public function destroy($id)
     {
         //
+        $tcargo = TCargo::where('id',$id);
+
+        $tcargo->delete();
+
+        $data = TCargo::all();
+
+        return response()->json([
+            "meta"=>array('msg','Ok'),
+            "status"=>true,
+            "objects"=>$data
+        ]);
+
     }
 }

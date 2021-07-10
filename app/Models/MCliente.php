@@ -16,7 +16,6 @@ class MCliente extends Model
         "nombre",
         "idTDocumento",
         "numeroDocumento",
-        "direccion",
-        "estado"
+        "direccion"
     ];
 }

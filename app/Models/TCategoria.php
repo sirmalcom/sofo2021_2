@@ -14,7 +14,6 @@ class TCategoria extends Model
     public $timestamps = false;
     protected $table = "TCategoria";
     protected $fillable = [
-        "nombre",
-        "estado"
+        "nombre"
     ];
 }

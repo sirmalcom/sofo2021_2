@@ -20,7 +20,6 @@ class CreateMVentasTable extends Migration
             $table->decimal('subtotal',8,2);
             $table->decimal('total',8,2);
             $table->decimal('ganancia',8,2);
-            $table->boolean('estado');
             $table->unsignedBigInteger('idTComprobante');
             $table->unsignedBigInteger('idMCliente');
             $table->unsignedBigInteger('idMUsuario');

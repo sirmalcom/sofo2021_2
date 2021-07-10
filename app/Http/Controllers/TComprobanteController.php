@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TComprobante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class TComprobanteController extends Controller
 {
@@ -15,6 +16,12 @@ class TComprobanteController extends Controller
     public function index()
     {
         //
+        $tcomprobante = TComprobante::all();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$tcomprobante
+        ]);
     }
 
     /**
@@ -36,6 +43,21 @@ class TComprobanteController extends Controller
     public function store(Request $request)
     {
         //
+        Log::channel('stderr')->info('¡Peticion llego!');
+
+        $tcomprobante = new TComprobante();
+
+        $tcomprobante -> nombre = $request->input('nombre');
+
+        $tcomprobante->save();
+
+        $objetos = TComprobante::all();
+
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$objetos
+        ]);
     }
 
     /**
@@ -44,9 +66,17 @@ class TComprobanteController extends Controller
      * @param  \App\Models\TComprobante  $tComprobante
      * @return \Illuminate\Http\Response
      */
-    public function show(TComprobante $tComprobante)
+    public function show($id)
     {
         //
+        $tcomprobante = TComprobante::where('id',$id)->get();
+        
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "object"=>$tcomprobante
+        ]);
+
     }
 
     /**
@@ -67,9 +97,21 @@ class TComprobanteController extends Controller
      * @param  \App\Models\TComprobante  $tComprobante
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TComprobante $tComprobante)
+    public function update(Request $request,$id)
     {
         //
+        $tcomprobante = TComprobante::where('id',$id);
+
+        $tcomprobante->update($request->all());
+
+        $objects = TComprobante::all();
+
+        return response()->json([
+            "meta"=>array('msg'=>'Ok'),
+            "status"=>true,
+            "objects"=>$objects
+        ]);
+
     }
 
     /**
@@ -78,8 +120,19 @@ class TComprobanteController extends Controller
      * @param  \App\Models\TComprobante  $tComprobante
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TComprobante $tComprobante)
+    public function destroy($id)
     {
         //
+        $tcomprobante = TComprobante::where('id',$id);
+        
+        $tcomprobante->delete();
+    
+        $objects = TComprobante::all();
+
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "objects"=>$objects
+        ]);
     }
 }

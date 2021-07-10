@@ -123,10 +123,11 @@ class TDocumentoController extends Controller
         //Eliminado logico(Soft deletes)
         $tdocumento = TDocumento::where('id',$id);
         $tdocumento->delete();
+        $table = TDocumento::all();
         return response()->json([
             "meta"=>array("msg"=>"Ok"),
             "status"=>true,
-            "object"=>"El documento fue eliminado con exito"
+            "object"=>$table
         ]);
     }
 }

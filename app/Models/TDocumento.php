@@ -14,8 +14,7 @@ class TDocumento extends Model
     public $timestamps = false;
     protected $table = "TDocumento";
     protected $fillable = [
-        "nombre",
-        "estado"
+        "nombre"
     ];
 
 }
