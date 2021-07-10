@@ -17,6 +17,7 @@ class CreateTDocumentosTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',50);
             $table->boolean('estado');
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,7 @@ class CreateTDocumentosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TDocumento');
+        //Schema::dropIfExists('TDocumento');
+        $table->dropSoftDeletes();
     }
 }

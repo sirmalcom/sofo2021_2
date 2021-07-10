@@ -17,6 +17,7 @@ class CreateTCategoriasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nombre',50);
             $table->boolean('estado');
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,7 @@ class CreateTCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TCategoria');
+        //Schema::dropIfExists('TCategoria');
+        $table->dropSoftDeletes();
     }
 }

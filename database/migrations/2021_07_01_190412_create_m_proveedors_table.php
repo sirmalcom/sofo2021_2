@@ -23,6 +23,7 @@ class CreateMProveedorsTable extends Migration
             $table->string('telefono',20);
             $table->boolean('estado');
             $table->foreign('idTDocumento')->references('id')->on('TDocumento');
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,7 @@ class CreateMProveedorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MProveedor');
+        //Schema::dropIfExists('MProveedor');
+        $table->dropSoftDeletes();
     }
 }

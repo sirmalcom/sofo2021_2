@@ -24,6 +24,7 @@ class CreateMEntradasTable extends Migration
             $table->foreign('idMUsuario')->references('id')->on('MUsuario');
             $table->foreign('idTComprobante')->references('id')->on('TComprobante');
             $table->foreign('idMProveedor')->references('id')->on('MProveedor');
+            $table->softDeletes();
         });
     }
 
@@ -34,6 +35,7 @@ class CreateMEntradasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MEntrada');
+       // Schema::dropIfExists('MEntrada');
+       $table->dropSoftDeletes();
     }
 }

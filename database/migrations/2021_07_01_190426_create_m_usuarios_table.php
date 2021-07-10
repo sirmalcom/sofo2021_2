@@ -20,6 +20,7 @@ class CreateMUsuariosTable extends Migration
             $table->unsignedBigInteger('idTCargo');
             $table->boolean('estado');
             $table->foreign('idTCargo')->references('id')->on('TCargo');    
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +31,7 @@ class CreateMUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MUsuario');
+        //Schema::dropIfExists('MUsuario');
+        $table->dropSoftDeletes();
     }
 }

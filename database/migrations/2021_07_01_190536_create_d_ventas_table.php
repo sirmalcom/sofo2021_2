@@ -22,6 +22,7 @@ class CreateDVentasTable extends Migration
             $table->decimal('importe',8,2);
             $table->foreign('idMVenta')->references('id')->on('MVenta');
             $table->foreign('idMProducto')->references('id')->on('MProducto');
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +33,7 @@ class CreateDVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DVenta');
+        //Schema::dropIfExists('DVenta');
+        $table->dropSoftDeletes();
     }
 }

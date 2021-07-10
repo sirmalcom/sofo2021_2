@@ -25,6 +25,7 @@ class CreateMProductosTable extends Migration
             $table->decimal('ganancia',8,2);
             $table->boolean('estado');
             $table->foreign('idTCategoria')->references('id')->on('TCategoria');
+            $table->softDeletes();
         });
     }
 
@@ -35,6 +36,7 @@ class CreateMProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MProducto');
+        //Schema::dropIfExists('MProducto');
+        $table->dropSoftDeletes();
     }
 }

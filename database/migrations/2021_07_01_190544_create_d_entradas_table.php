@@ -25,6 +25,7 @@ class CreateDEntradasTable extends Migration
             $table->decimal('importe',8,2);
             $table->foreign('idMEntrada')->references('id')->on('MEntrada');
             $table->foreign('idMProducto')->references('id')->on('MProducto');
+            $table->softDeletes();
         });
     }
 
@@ -35,6 +36,7 @@ class CreateDEntradasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('DEntrada');
+        //Schema::dropIfExists('DEntrada');
+        $table->dropSoftDeletes();
     }
 }

@@ -27,6 +27,7 @@ class CreateMVentasTable extends Migration
             $table->foreign('idMCliente')->references('id')->on('MCliente');
             $table->foreign('idMUsuario')->references('id')->on('MUsuario');
             $table->foreign('idTComprobante')->references('id')->on('TComprobante');
+            $table->softDeletes();
         });
     }
 
@@ -37,6 +38,7 @@ class CreateMVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MVenta');
+        //Schema::dropIfExists('MVenta');
+        $table->dropSoftDeletes();
     }
 }

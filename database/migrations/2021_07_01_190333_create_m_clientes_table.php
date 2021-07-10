@@ -21,6 +21,7 @@ class CreateMClientesTable extends Migration
             $table->string('direccion',150);
             $table->boolean('estado');
             $table->foreign('idTDocumento')->references('id')->on('TDocumento');
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +32,7 @@ class CreateMClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('MCliente');
+        //Schema::dropIfExists('MCliente');
+        $table->dropSoftDeletes();
     }
 }

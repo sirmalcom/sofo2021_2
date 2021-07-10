@@ -17,6 +17,7 @@ class CreateTCargosTable extends Migration
             $table->bigIncrements('id');
             $table->string('cargo',50);
             $table->boolean('estado');
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +28,7 @@ class CreateTCargosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TCargo');
+        //Schema::dropIfExists('TCargo');
+        $table->dropSoftDeletes();
     }
 }

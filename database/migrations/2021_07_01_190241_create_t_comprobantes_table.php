@@ -16,7 +16,8 @@ class CreateTComprobantesTable extends Migration
         Schema::create('TComprobante', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre',50);
-            $table->boolean('estado');            
+            $table->boolean('estado');
+            $table->softDeletes();            
         });
     }
 
@@ -27,6 +28,7 @@ class CreateTComprobantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('TComprobante');
+        //Schema::dropIfExists('TComprobante');
+        $table->dropSoftDeletes();
     }
 }

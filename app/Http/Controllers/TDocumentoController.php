@@ -118,16 +118,15 @@ class TDocumentoController extends Controller
      * @param  \App\Models\TDocumento  $tDocumento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy($id)
     {
-        //Eliminado logico
-        $tdocumento = TDocumento::where('id',$id)->get();
-        $tdocumento->update($request->estado = 0);
-        $all = TDocumento::all();
+        //Eliminado logico(Soft deletes)
+        $tdocumento = TDocumento::where('id',$id);
+        $tdocumento->delete();
         return response()->json([
             "meta"=>array("msg"=>"Ok"),
             "status"=>true,
-            "objects"=>$all
+            "object"=>"El documento fue eliminado con exito"
         ]);
     }
 }
