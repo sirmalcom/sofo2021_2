@@ -15,7 +15,7 @@ class TDocumentoController extends Controller
      */
     public function index()
     {
-        $tdocumento = TDocumento::where("estado",1)->get();
+        $tdocumento = TDocumento::all();
         $json = array(
             "meta"=>array(
                 "msg"=>"Ok"
@@ -49,10 +49,9 @@ class TDocumentoController extends Controller
 
         $tdocumento = new TDocumento();
         $tdocumento -> nombre = $request->input("nombre");
-        $tdocumento -> estado = 1;
         $tdocumento->save();    
 
-        $index = TDocumento::where("estado",1)->get();
+        $index = TDocumento::all();
 
         return response()->json([
             "meta"=>array("msg"=>"Ok"),
@@ -69,7 +68,7 @@ class TDocumentoController extends Controller
      */
     public function show($id)
     {
-        $tdocumento = TDocumento::where("estado",1)->where("id",$id)->get();
+        $tdocumento = TDocumento::where("id",$id)->get();
         $json = array(
             "meta"=>array("msg"=>"Ok"),
             "status"=>true,
@@ -104,7 +103,7 @@ class TDocumentoController extends Controller
         //
         $tdocumento = TDocumento::where('id',$id);
         $tdocumento->update($request->all());
-        $all = TDocumento::where('estado',1)->get();
+        $all = TDocumento::all();
         return response()-> json([
             "meta"=>array("msg"=>"Ok"),
             "status"=>true,
