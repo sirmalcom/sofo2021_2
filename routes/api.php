@@ -22,6 +22,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::apiResource('tdocumento', 'TDocumentoController'); 
     Route::apiResource('tcomprobante','TComprobanteController');
     Route::apiResource('tcargo','TCargoController');
+    Route::apiResource('tcategoria','TCategoriaController');
+    Route::apiResource('mcliente',"MClienteController");
 });
 /*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

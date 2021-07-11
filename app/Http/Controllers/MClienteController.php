@@ -15,6 +15,11 @@ class MClienteController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            "meta"=>array('msg'=>'Ok'),
+            "status"=>true,
+            "objects"=>MCliente::all()
+        ]);
     }
 
     /**
@@ -36,6 +41,17 @@ class MClienteController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new MCliente();
+        $model->nombre = $request->input('nombre');
+        $model->idTDocumento = $request->input('idTDocumento');
+        $model->numeroDocumento = $request->input('numeroDocumento');
+        $model->direccion = $request->input('direccion');
+        $model->save();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>MCliente::all()
+        ]);
     }
 
     /**
@@ -44,9 +60,14 @@ class MClienteController extends Controller
      * @param  \App\Models\MCliente  $mCliente
      * @return \Illuminate\Http\Response
      */
-    public function show(MCliente $mCliente)
+    public function show($id)
     {
-        //
+        $model = MCliente::where('id',$id)->get();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "object"=>$model
+        ]);
     }
 
     /**
@@ -67,9 +88,16 @@ class MClienteController extends Controller
      * @param  \App\Models\MCliente  $mCliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MCliente $mCliente)
+    public function update(Request $request,$id)
     {
         //
+        $model = MCliente::where('id',$id);
+        $model->update($request->all());
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>MCliente::all()
+        ]);
     }
 
     /**
@@ -78,8 +106,15 @@ class MClienteController extends Controller
      * @param  \App\Models\MCliente  $mCliente
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MCliente $mCliente)
+    public function destroy($id)
     {
         //
+        $model = MCliente::where('id',$id);
+        $model->delete();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>MCliente::all()
+        ]);
     }
 }

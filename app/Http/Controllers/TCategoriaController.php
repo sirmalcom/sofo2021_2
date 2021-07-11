@@ -15,6 +15,12 @@ class TCategoriaController extends Controller
     public function index()
     {
         //
+        $tcategoria = TCategoria::all();
+        return response()->json([
+            "meta"=>array('msg'=>'Ok'),
+            "status"=>true,
+            "objects"=>$tcategoria
+        ]);
     }
 
     /**
@@ -36,6 +42,14 @@ class TCategoriaController extends Controller
     public function store(Request $request)
     {
         //
+        $tcategoria = new TCategoria();
+        $tcategoria->nombre = $request->input('nombre');
+        $tcategoria->save();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>TCategoria::all()
+        ]);
     }
 
     /**
@@ -44,9 +58,15 @@ class TCategoriaController extends Controller
      * @param  \App\Models\TCategoria  $tCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(TCategoria $tCategoria)
+    public function show($id)
     {
         //
+        $tcategoria = TCategoria::where('id',$id)->get();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "object"=>$tcategoria
+        ]);
     }
 
     /**
@@ -67,9 +87,16 @@ class TCategoriaController extends Controller
      * @param  \App\Models\TCategoria  $tCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TCategoria $tCategoria)
+    public function update(Request $request,$id)
     {
         //
+        $tcategoria = TCategoria::where('id',$id);
+        $tcategoria->update($request->all());
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>TCategoria::all()
+        ]);
     }
 
     /**
@@ -78,8 +105,15 @@ class TCategoriaController extends Controller
      * @param  \App\Models\TCategoria  $tCategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TCategoria $tCategoria)
+    public function destroy($id)
     {
         //
+        $tcategoria = TCategoria::where('id',$id);
+        $tcategoria->delete();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>TCategoria::all()
+        ]);
     }
 }
