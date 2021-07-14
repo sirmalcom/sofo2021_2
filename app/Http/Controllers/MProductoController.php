@@ -15,6 +15,11 @@ class MProductoController extends Controller
     public function index()
     {
         //
+        return response()->json([
+            "meta"=>array('msg'=>'Ok'),
+            "status"=>true,
+            "objects"=>MProducto::all()
+        ]);
     }
 
     /**
@@ -36,6 +41,21 @@ class MProductoController extends Controller
     public function store(Request $request)
     {
         //
+        $model = new MProducto();
+        $model->idTCategoria = $request->input('idTCategoria');
+        $model->nombre = $request->input('nombre');
+        $model->descripcion = $request->input('descripcion');
+        $model->stock = $request->input('stock');
+        $model->stockMinimo = $request->input('stockMinimo');
+        $model->ultimoCostoCompra = $request->input('ultimoCostoCompra');
+        $model->ultimoCostoVenta = $request->input('ultimoCostoVenta');
+        $model->ganancia = $request->input('ganancia');
+        $model->save();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>MProducto::all()
+        ]);
     }
 
     /**
@@ -44,9 +64,15 @@ class MProductoController extends Controller
      * @param  \App\Models\MProducto  $mProducto
      * @return \Illuminate\Http\Response
      */
-    public function show(MProducto $mProducto)
+    public function show($id)
     {
         //
+        $model = MProducto::where('id',$id)->get();
+        return response()->json([
+            "meta"=>array("msg"=>"Ok"),
+            "status"=>true,
+            "object"=>$model
+        ]);
     }
 
     /**
@@ -67,9 +93,16 @@ class MProductoController extends Controller
      * @param  \App\Models\MProducto  $mProducto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MProducto $mProducto)
+    public function update(Request $request,$id)
     {
         //
+        $model = MProducto::where('id',$id);
+        $model->update($request->all());
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>MProducto::all()
+        ]);
     }
 
     /**
@@ -78,8 +111,15 @@ class MProductoController extends Controller
      * @param  \App\Models\MProducto  $mProducto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MProducto $mProducto)
+    public function destroy($id)
     {
         //
+        $model = MProducto::where('id',$id);
+        $model->delete();
+        return response()->json([
+            "meta"=>array('msg'=>"Ok"),
+            "status"=>true,
+            "objects"=>Mproducto::all()
+        ]);
     }
 }

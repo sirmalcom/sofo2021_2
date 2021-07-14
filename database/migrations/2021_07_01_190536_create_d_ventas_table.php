@@ -14,9 +14,9 @@ class CreateDVentasTable extends Migration
     public function up()
     {
         Schema::create('DVenta', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('idMVenta');
-            $table->unsignedBigInteger('idMProducto');
+            $table->increments('id');
+            $table->integer('idMVenta')->unsigned();
+            $table->integer('idMProducto')->unsigned();
             $table->integer('cantidad');
             $table->decimal('descuento',8,2);
             $table->decimal('importe',8,2);

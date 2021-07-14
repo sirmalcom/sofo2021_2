@@ -14,9 +14,9 @@ class CreateMClientesTable extends Migration
     public function up()
     {
         Schema::create('MCliente', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nombre',100);
-            $table->unsignedBigInteger('idTDocumento');
+            $table->integer('idTDocumento')->unsigned();
             $table->string('numeroDocumento',11);
             $table->string('direccion',150);
             $table->foreign('idTDocumento')->references('id')->on('TDocumento');

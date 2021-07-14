@@ -14,15 +14,15 @@ class CreateMVentasTable extends Migration
     public function up()
     {
         Schema::create('MVenta', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamp('fechaVenta');
             $table->string('numeroSerie',50);
             $table->decimal('subtotal',8,2);
             $table->decimal('total',8,2);
             $table->decimal('ganancia',8,2);
-            $table->unsignedBigInteger('idTComprobante');
-            $table->unsignedBigInteger('idMCliente');
-            $table->unsignedBigInteger('idMUsuario');
+            $table->integer('idTComprobante')->unsigned();
+            $table->integer('idMCliente')->unsigned();
+            $table->integer('idMUsuario')->unsigned();
             $table->foreign('idMCliente')->references('id')->on('MCliente');
             $table->foreign('idMUsuario')->references('id')->on('MUsuario');
             $table->foreign('idTComprobante')->references('id')->on('TComprobante');

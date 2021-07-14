@@ -14,8 +14,8 @@ class CreateMProductosTable extends Migration
     public function up()
     {
         Schema::create('MProducto', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('idTCategoria');
+            $table->increments('id');
+            $table->integer('idTCategoria')->unsigned();
             $table->string('nombre',150);
             $table->string('descripcion',200);
             $table->integer('stock');

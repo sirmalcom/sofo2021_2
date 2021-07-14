@@ -14,7 +14,7 @@ class CreateTCargosTable extends Migration
     public function up()
     {
         Schema::create('TCargo', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nombre',50);
             $table->softDeletes();
         });

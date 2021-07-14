@@ -14,9 +14,9 @@ class CreateDEntradasTable extends Migration
     public function up()
     {
         Schema::create('DEntrada', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->unsignedBigInteger('idMEntrada');
-            $table->unsignedBigInteger('idMProducto');
+            $table->increments('id');
+            $table->integer('idMEntrada')->unsigned();
+            $table->integer('idMProducto')->unsigned();
             $table->date('fechaVencimiento');
             $table->decimal('precioCompra',8,2);
             $table->decimal('precioVenta',8,2);

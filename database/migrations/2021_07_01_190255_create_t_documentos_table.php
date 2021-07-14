@@ -14,7 +14,7 @@ class CreateTDocumentosTable extends Migration
     public function up()
     {
         Schema::create('TDocumento', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('nombre',50);
             $table->softDeletes();
         });

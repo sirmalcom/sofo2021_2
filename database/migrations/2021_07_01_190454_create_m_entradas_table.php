@@ -14,13 +14,13 @@ class CreateMEntradasTable extends Migration
     public function up()
     {
         Schema::create('MEntrada', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->timestamp('fechaEntrada');  
             $table->string('numeroComprobante',100);
             $table->decimal('costoTotal',8,2);
-            $table->unsignedBigInteger('idTComprobante');
-            $table->unsignedBigInteger('idMUsuario');
-            $table->unsignedBigInteger('idMProveedor');
+            $table->integer('idTComprobante')->unsigned();
+            $table->integer('idMUsuario')->unsigned();
+            $table->integer('idMProveedor')->unsigned();
             $table->foreign('idMUsuario')->references('id')->on('MUsuario');
             $table->foreign('idTComprobante')->references('id')->on('TComprobante');
             $table->foreign('idMProveedor')->references('id')->on('MProveedor');

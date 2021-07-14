@@ -14,10 +14,10 @@ class CreateMUsuariosTable extends Migration
     public function up()
     {
         Schema::create('MUsuario', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('usuario',50)->unique();
             $table->string('clave',50);
-            $table->unsignedBigInteger('idTCargo');
+            $table->integer('idTCargo')->unsigned();
             $table->foreign('idTCargo')->references('id')->on('TCargo');    
             $table->softDeletes();
         });
